@@ -1,0 +1,130 @@
+// JavaScript Document
+// HangMan
+
+$(document).ready(function(e) {
+	// Update image map with window resize
+	// ALL CREDIT GOES TO Matt Stow
+	// https://github.com/stowball/jQuery-rwdImageMaps/blob/master/README.md
+	// Hopefully someday I will be this good to create codes like this for others to use.
+	$('img[usemap]').rwdImageMaps();
+	
+	// images to hide until event
+	$('#one').hide();
+	$('#two').hide();
+	$('#three').hide();
+	$('#four').hide();
+	$('#five').hide();
+	$('#six').hide();
+	$('#seven').hide();
+	
+	// add a click event to the tabs
+	$('ul.tabNavigation li a').click(function(e){
+		// prevent default action
+		e.preventDefault();
+		
+		// the greater than symbol makes sure we grab the divs directly inside of .tabs (tab containers)
+		// add filter to get tab container that matches the hash of the link we clicked
+		$(this.hash).show().siblings('div').hide();
+		
+		// remove "selected" class from all tabs
+		// add Class to the element that was clicked on
+		// Create a jQuery object from a JS object/element
+		$(this).addClass('selected')
+			.parent()
+			.siblings()
+			.find('a')
+			.removeClass('selected');
+			
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Array of twelve words
+		// indexes      0         1           2		    3         4         5         6           7            8          9         10        11
+		var words = ['Naruto', 'Kakashi', 'Sasuke', 'Sakura', 'Hinata', 'Boruto', 'Itachi', 'Hashirama', 'Tobirama', 'Hiruzen', 'Minato', 'Tsunade'];
+		//var dashes = ['------', '-------', '------', '------', '------', '------', '------', '---------', '--------', '-------', '------', '-------'];
+		// track guess
+		var guess = 0;
+		
+		// Variables, get inputs
+		var letter;
+		// randomly select a word from array 'words'
+		var randomPick = Math.floor((Math.random()*(words.length-1))); 
+	
+		var getWord = words[randomPick]; // get random word
+		var chosen = new Array(getWord.length); // create new array from word
+		var remainingLetters = chosen.length; 
+	
+		//$('#correctGuess').html('getword: ' + getWord);  // display word 
+		
+		// display chosen word in dashes
+		for (var i = 0; i < chosen.length; i++){
+			chosen[i] = "- ";
+			$('#display').html(chosen); // display dashes
+		}
+		//alert(getWord);
+		// check word
+		console.log(getWord);
+		//console.log(randomPick);
+
+		// user click function, 
+		$('#alphabetsMap area').click(function(e){
+		
+			// on click map gets id from map id
+			letter = $(this).attr('id');
+			// uncomment alert to help write and determine code. Comment/hide alert once done 
+			//alert(letter);
+			$('#message').html('You guessed ' + letter); // displays guess
+			// flag to check for matching letter
+			var found = false;
+			// compare user guess to word
+			for(var i = 0; i < getWord.length; i++){
+				if(getWord[i].charAt(0).toLowerCase() == letter.toLowerCase()){
+					chosen[i] = letter + ' ';
+					$('#display').html(chosen);
+					remainingLetters--;
+					found = true;
+				}
+			}
+
+			// when not found increment guess by 1
+			if(!found){
+				guess+= 1;
+				//$('#incorrectGuess').html('Incorrect guesses: ' + guess);
+			}			
+			// display hangman
+			if(guess == 1){
+				$('#stand').hide();
+				$('#one').show();
+			}else if(guess == 2){
+				$('#one').hide();
+				$('#two').show();
+			}else if(guess == 3){
+				$('#two').hide();
+				$('#three').show();
+			}else if(guess == 4){
+				$('#three').hide();
+				$('#four').show();
+			}else if(guess == 5){
+				$('#four').hide();
+				$('#five').show();
+			}else if(guess == 6){
+				$('#five').hide();
+				$('#six').show();
+				$('#message').html('Final Strike!');
+			}else if(guess > 6){
+				$('#six').hide();
+				$('#seven').show();
+				$('#message').html('HANGMAN! DEAD!' + ' Word is ' + getWord);
+				$('#gameReset').html('Game Reseting in 5 seconds...');
+				setTimeout(location.reload.bind(location), 5000);
+			}
+			// display WIN
+			if(remainingLetters == 0){
+				$('#win').html('YOU WIN! Your word is: ' + getWord);
+				$('#gameReset').html('Game Reseting in 5 seconds...');
+				setTimeout(location.reload.bind(location), 5000);
+			}
+			
+			console.log(guess);
+		});	
+		
+	}).first().click(); // click the first tab when the page loads
+});
