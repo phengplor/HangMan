@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Naruto Hangman</title>
+	<link href="hangmanC.css" type="text/css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script> 
+    <script src="https://raw.github.com/davidjbradshaw/imagemap-resizer/master/js/imageMapResizer.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="jquery.rwdImageMaps.min.js"></script>
+	<script src="hangmanJ.js"></script>
+</head>
+<body>
+    <div class="tabs">
+    	<!-- TABS -->
+      	<ul class="tabNavigation">
+        	<li><a href="#about">Hangman</a></li>
+      	</ul>
+      	<!-- tab containers -->
+      	<!-- ABOUT -->
+        <div id="about">
+       		<h1>Naruto Hangman</h1>
+        	<h3>Pick a letter</h3>
+            <div id="divOne">
+                <img id="abcChart" src="abcChart.jpg" alt="ABC Chart" style="width:50; height:50;" usemap="#abcMap"> 
+                <map name="abcMap" id="alphabetsMap">
+                  <area id="A" shape="rect" coords="97,118,245,292" href="#a" alt="letterA">
+                  <area id="B" shape="rect" coords="324,120,448,288" href="#b" alt="letterB">
+                  <area id="C" shape="rect" coords="532,108,674,288" href="#c" alt="letterC">
+                  <area id="D" shape="rect" coords="746,118,886,290" href="#d" alt="letterD">
+                  <area id="E" shape="rect" coords="950,118,1086,290" href="#E" alt="letterE">
+                  <area id="F" shape="rect" coords="1170,110,1298,282" href="#F" alt="letterF">
+                  <area id="G" shape="rect" coords="1366,110,1518,294" href="#G" alt="letterG">
+                  <area id="H" shape="rect" coords="102,362,250,538" href="#H" alt="letterH">
+                  <area id="I" shape="rect" coords="354,366,422,546" href="#I" alt="letterI">
+                  <area id="J" shape="rect" coords="519,371,631,531" href="#J" alt="letterJ">
+                  <area id="K" shape="rect" coords="738,366,878,538" href="#K" alt="letterK">
+                  <area id="L" shape="rect" coords="946,366,1062,534" href="#L" alt="letterL">
+                  <area id="M" shape="rect" coords="1134,370,1314,542" href="#M" alt="letterM">
+                  <area id="N" shape="rect" coords="1366,374,1502,538" href="#N" alt="letterN">
+                  <area id="O" shape="rect" coords="110,618,258,794" href="#O" alt="letterO">
+                  <area id="P" shape="rect" coords="318,618,454,778" href="#P" alt="letterP">
+                  <area id="Q" shape="rect" coords="526,610,690,794" href="#Q" alt="letterQ">
+                  <area id="R" shape="rect" coords="742,614,886,794" href="#R" alt="letterR">
+                  <area id="S" shape="rect" coords="942,614,1090,794" href="#S" alt="letterS">
+                  <area id="T" shape="rect" coords="1146,606,1294,794" href="#T" alt="letterT">
+                  <area id="U" shape="rect" coords="1374,610,1506,790" href="#U" alt="letterU">
+                  <area id="V" shape="rect" coords="102,854,270,1038" href="#V" alt="letterV">
+                  <area id="W" shape="rect" coords="290,862,482,1034" href="#W" alt="letterW">
+                  <area id="X" shape="rect" coords="514,858,674,1034" href="#X" alt="letterX">
+                  <area id="Y" shape="rect" coords="734,866,886,1038" href="#Y" alt="letterY">
+                  <area id="Z" shape="rect" coords="950,862,1086,1034" href="#Z" alt="letterZ">
+                </map> 
+                <p>Choose an Alphabet</p>
+            	<div id="display"></div>
+                <div id="message"></div>
+                <div id="correctGuess"></div>
+                <div id="incorrectGuess"></div>
+                <div id="finalWarning"></div>
+                <div id="win"></div>
+                <div id="gameReset"></div>
+                <div id="figure"></div>
+ 			</div>
+            <div id="divTwo">
+                <img id="stand" src="ground.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="one" src="one.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="two" src="two.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="three" src="three.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="four" src="four.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="five" src="five.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="six" src="six.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <img id="seven" src="seven.jpg" alt="Post for hangman" height="300" width="200" usemap="#emptyMap">
+                <map name="emptyMap" id="empty">
+                </map>
+                <form name="restartGame">
+					<input name="restart" type="button" value="New Game" onClick="location.reload()">
+				</form>
+                <br><br><br><br>  
+            </div>
+            
+            <br><br>
+        </div>
+	</div>  
+</body>
+<footer>
+	<div id="footer">
+  		<p>Hangman Pheng Lor</p>
+    </div>
+</footer> 
+</html>
